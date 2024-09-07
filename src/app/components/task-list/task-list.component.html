@@ -1,11 +1,65 @@
-<ul>
-  <li *ngFor="let task of tasks">
-    <input
-      type="checkbox"
-      [checked]="task.completed"
-      (change)="toggleComplete(task)"
-    />
-    <span>{{ task.title }}</span>
-   <button *ngIf="task._id" (click)="deleteTask(task._id!)">Delete</button>
-  </li>
-</ul>
+<div class="app-container">
+  <!-- Sidebar Menu -->
+  <nav class="sidebar">
+    <ul>
+      <li><a href="tasks" (click)="viewTasks()">Listar</a></li>
+      <li><a href="tasks/new" (click)="newTask()">Criar</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Create New Task Form -->
+    <div class="task-form" *ngIf="isCreatingNewTask">
+      <h2>Editar Tarefa</h2>
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="title">Nome</label>
+          <input
+            type="text"
+            id="title"
+            placeholder="Informe o nome da tarefa"
+            [(ngModel)]="task.title"
+            name="title"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Descrição</label>
+          <input
+            type="text"
+            id="description"
+            placeholder="Informe a descrição da tarefa"
+            [(ngModel)]="task.description"
+            name="description"
+          />
+        </div>
+        <button type="submit" class="submit-btn">Editar Tarefa</button>
+      </form>
+    </div>
+
+    <!-- Task List -->
+    <div class="task-list" *ngIf="!isCreatingNewTask">
+      <h2>Lista de Tarefas</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td>
+              <button class="edit-btn" (click)="editTask(task)">Edit</button>
+              <button class="delete-btn" *ngIf="task._id" (click)="deleteTask(task._id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

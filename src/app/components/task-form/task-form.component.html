@@ -1,26 +1,41 @@
-<form (ngSubmit)="onSubmit()" class="task-form">
-  <div class="form-group">
-    <label for="title">Task Title</label>
-    <input
-      type="text"
-      id="title"
-      placeholder="Enter task title"
-      [(ngModel)]="task.title"
-      name="title"
-      required
-    />
+<div class="app-container">
+  <!-- Sidebar Menu -->
+  <nav class="sidebar">
+    <ul>
+      <li><a href="tasks" (click)="viewTasks()">Listar</a></li>
+      <li><a href="tasks/new" (click)="newTask()">Criar</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Create New Task Form -->
+    <div class="task-form">
+      <h2>Nova Tarefa</h2>
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="title">Nome</label>
+          <input
+            type="text"
+            id="title"
+            placeholder="Informe o nome da tarefa"
+            [(ngModel)]="task.title"
+            name="title"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Descrição</label>
+          <input
+            type="text"
+            id="description"
+            placeholder="Informe a descrição da tarefa"
+            [(ngModel)]="task.description"
+            name="description"
+          />
+        </div>
+        <button type="submit" class="submit-btn">Adicionar</button>
+      </form>
+    </div>
   </div>
-  
-  <div class="form-group">
-    <label for="description">Task Description</label>
-    <input
-      type="text"
-      id="description"
-      placeholder="Enter task description"
-      [(ngModel)]="task.description"
-      name="description"
-    />
-  </div>
-  
-  <button type="submit" class="submit-btn">Add Task</button>
-</form>
+</div>

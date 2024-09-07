@@ -1,0 +1,17 @@
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 15px;
+}
+
+button {
+  margin-left: 10px;
+}
+
+.task-list {
+  margin-top: 20px;
+}
